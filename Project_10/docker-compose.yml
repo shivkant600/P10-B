@@ -1,5 +1,4 @@
 services:
-<<<<<<< HEAD
   frontend:
     build:
       context: ./ORSProject10-UI
@@ -39,35 +38,3 @@ volumes:
 networks:
   ors_network:
     driver: bridge
-=======
-  mysql:
-    image: mysql:8.0
-    container_name: ors-mysql
-    environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: ors10
-    ports:
-      - "3308:3306"
-    volumes:
-      - mysql_data:/var/lib/mysql
-    healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
-      interval: 10s
-      retries: 5
-
-  backend:
-    build: .
-    container_name: ors-backend
-    depends_on:
-      mysql:
-        condition: service_healthy
-    ports:
-      - "8084:8084"
-    environment:
-      DB_URL: jdbc:mysql://ors-mysql:3306/ors10?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
-      DB_USERNAME: root
-      DB_PASSWORD: root
-
-volumes:
-  mysql_data:
->>>>>>> 08e3c47d29ff0b650c90c600f91eca203871355a
